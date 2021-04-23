@@ -18,7 +18,7 @@ with open(args.input_csv) as input_csv:
 y_predictions = ModelRNN(model_file_path='src/model.pkl').predict(df)
 
 # Save predictions to file
-df_predictions = pd.DataFrame({'prediction': y_predictions})
+df_predictions = pd.DataFrame({'prediction': y_predictions}, index=df.index)
 df_predictions.to_csv(output_file_path, index=False)
 
 print(f'{len(y_predictions)} predictions saved to a csv file')
