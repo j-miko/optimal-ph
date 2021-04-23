@@ -9,11 +9,11 @@ from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
 class ModelRNN:
     def __init__(self, model_file_path):
         self.model_file_path = model_file_path
-        
-    def predict(self, input_df):
-        model_data = pickle.load(open("model.pkl", "rb"))
+        model_data = pickle.load(open(self.model_file_path, "rb"))
         model = keras.Sequential.from_config(model_data['config'])
         model.set_weights(model_data['weights'])
+        
+    def predict(self, input_df):
         return model.predict(input_df)
 
 class BaselineModel:
