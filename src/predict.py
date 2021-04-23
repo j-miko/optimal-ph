@@ -1,6 +1,6 @@
 import argparse
 import pandas as pd
-from model import BaselineModel
+from model import ModelRNN
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv', default='input.csv')
