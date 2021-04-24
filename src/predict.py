@@ -18,12 +18,18 @@ with open(args.input_csv) as input_csv:
 
 #preprocess data
 max_len = 1000
-sequence_ascii = [np.array([ord(cha) for cha in row]) for row in df]
-df = pd.DataFrame(sequence.pad_sequences(sequence_ascii, maxlen=max_len))
+
+chars = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'.split(',')
+chars_encoder = {char: ii for ii, char in enumerate(chars)}
+sequence_encoded = [np.array([chars_encoder[char] for char in row]) for row in df]
+sequence_encoded = sequence.pad_sequences(sequence_encoded, maxlen=max_len)
+
+
+df = pd.DataFrame(sequence_encoded)
 
 # Run predictions
 # y_predictions = BaselineModel(model_file_path='src/model.pickle').predict(df)
-y_predictions = ModelRNN(model_file_path='src/model_2.pkl').predict(df)
+y_predictions = ModelRNN(model_file_path='src/model_3.pkl').predict(df)
 
 # Save predictions to file
 df_predictions = pd.DataFrame({'prediction': y_predictions.flatten()}, index=df.index)
