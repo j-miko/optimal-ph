@@ -21,7 +21,7 @@ max_len = 1000
 
 chars = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'.split(',')
 chars_encoder = {char: ii for ii, char in enumerate(chars)}
-sequence_encoded = [np.array([chars_encoder[char] for char in row]) for row in df]
+sequence_encoded = [np.array([chars_encoder[char] for char in row]) for row in df.to_numpy().flatten()]
 sequence_encoded = sequence.pad_sequences(sequence_encoded, maxlen=max_len)
 
 
