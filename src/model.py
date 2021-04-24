@@ -16,6 +16,14 @@ class ModelRNN:
     def predict(self, input_df):
         return self.model.predict(input_df)
 
+class ModelADA:
+    def __init__(self, model_file_path):
+        self.model_file_path = model_file_path
+        self.model = pickle.load(open(self.model_file_path, "rb"))
+    
+    def predict(self, input_df):
+        return self.model.predict(input_df)
+        
 class BaselineModel:
     def __init__(self, model_file_path):
         self.model_file_path = model_file_path
