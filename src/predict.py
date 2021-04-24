@@ -1,7 +1,7 @@
 import argparse
 import pandas as pd
 import numpy as np
-from model import ModelRNN
+from model import ModelADA
 from tensorflow.keras.preprocessing import sequence
 
 
@@ -29,7 +29,8 @@ df = pd.DataFrame(sequence_encoded)
 
 # Run predictions
 # y_predictions = BaselineModel(model_file_path='src/model.pickle').predict(df)
-y_predictions = ModelRNN(model_file_path='src/model_3.pkl').predict(df)
+# y_predictions = ModelRNN(model_file_path='src/model_3.pkl').predict(df)
+y_predictions = ModelADA(model_file_path='src/model_ada.pkl').predict(df)
 
 # Save predictions to file
 df_predictions = pd.DataFrame({'prediction': y_predictions.flatten()}, index=df.index)
